@@ -82,7 +82,7 @@ class Client:
         addr_ton: int = 0,
         addr_npi: int = 0,
         address_range: str = "",
-        interface_version: int = 34,
+        interface_version: int = 0x34,
         enquire_link_interval: float = 55.00,
         logger: typing.Union[None, logging.Logger] = None,
         codec: typing.Union[None, the_codec.BaseCodec] = None,
@@ -628,9 +628,9 @@ class Client:
             + chr(0).encode()
             + self.system_type.encode("ascii")
             + chr(0).encode()
-            + struct.pack(">I", self.interface_version)
-            + struct.pack(">I", self.addr_ton)
-            + struct.pack(">I", self.addr_npi)
+            + struct.pack(">B", self.interface_version)
+            + struct.pack(">B", self.addr_ton)
+            + struct.pack(">B", self.addr_npi)
             + self.address_range.encode("ascii")
             + chr(0).encode()
         )
